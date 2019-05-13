@@ -1,0 +1,6 @@
+# REST-Api-Application-With-Angularjs-Hibernate
+PROJECT NAME : ON TOPIC (BLOG)
+
+TECHNOLOGY AND FRAMEWORK: HIBERNATE, ANGULAR JS, REST API
+
+GOOGLE DRIVE DOWNLOAD LINK : https://drive.google.com/open?id=10_OXnrBb25syLXTfnnvIfFvJDNWk54uV
