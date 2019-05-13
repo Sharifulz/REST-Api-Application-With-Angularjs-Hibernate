@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/style.css">
+        <link href="css/all.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/fontawesome.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="css/bootstrap.css">
+
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="resources/bootstrap.min.js" type="text/javascript"></script>
+        <script src="resources/angular.min.js" type="text/javascript"></script>
+
+
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/fontawesome.min.css">
+
+        <script src="js/jquery-3.3.1.min.js"></script>
+
+
+        <script>
+        </script>
+        <style>
+            #mybtn:focus {
+                background: red;
+            }
+        </style>
+
+    </head>
+
+    <body ng-app="simpleApp">
+        <div ng-controller="simpleCtrl">
+        <div class="wrap">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-danger mb-5 fixed-top" style="height: 100px;" role="navigation">
+                    <p class="lead text-light" style="font-size: 30px;">ON TOPIC (ADMIN PANEL)</p>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="row">
+                        
+<!--                        <a href="publish.html" class="btn btn-warning px-5" style="margin-left: 850px;">{{today}}</a>-->
+                       
+                    </div>
+                    
+                </div>
+            </nav>
+        </div>
+        </div>
+        </div>
+        
+        <div class="wrap">
+            <div class="row">
+                <div class="col-md-1" style="position:fixed; margin-top: 100px; ">
+                    <p class="text-center btn btn-danger " style="font-size: 20px; margin: 25px; padding:10px 60px 10px 50px;"><a  class="text-light"  href="welcomeAdmin.html" target="frame">TIMELINE </a></p>
+                    <p class="text-center btn btn-warning " style="font-size: 20px; margin: 25px; padding:10px 65px 10px 50px;"><a  class="text-dark"  href="adminScience.html" target="frame">SCIENCE </a></p>
+                    <p class="text-center btn btn-warning " style="font-size: 20px; margin: 25px;  padding:10px 35px 10px 50px;"><a class="text-dark" href="adminHighlights.html" target="frame">HIGHLIGHTS</a></p>
+                    <p class="text-center btn btn-warning " style="font-size: 20px; margin: 25px;  padding:10px 50px 10px 50px;"><a class="text-dark" href="adminMorning.html" target="frame">MORNING </a></p>
+                    <p class="text-center btn btn-danger " style="font-size: 20px; margin: 25px; padding:10px 65px 10px 50px; "><a class="text-light" href="login.html">
+                             <i class="fa fa-power-off fa-1x text-light m-1"></i>LOGOUT</a></p>
+                </div>
+                <div class="col-md-1 mt-5" style="margin-left:250px; ">
+                    <div style='width: 1000px; height: 900px; overflow: hidden; margin-top: 100px'>
+                        <iframe height="900" width="1050" src="welcomeAdmin.html" name="frame" style="border:none;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <script>
+            
+             var app = angular.module("simpleApp", []);
+            app.controller("simpleCtrl", function ($scope) {
+                
+           $scope.today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd = '0'+dd
+} 
+
+if(mm<10) {
+    mm = '0'+mm
+} 
+
+today = mm + '/' + dd + '/' + yyyy;
+
+
+            });
+           
+
+        </script>
+    </body>
+
+
+</html>

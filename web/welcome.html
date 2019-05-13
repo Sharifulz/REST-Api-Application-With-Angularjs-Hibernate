@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+    <head>  
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/style.css">
+        <link href="css/all.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/fontawesome.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="css/bootstrap.css">
+
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+
+
+        <script src="resources/bootstrap.min.js" type="text/javascript"></script>
+        <script src="resources/angular.min.js" type="text/javascript"></script>
+
+
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/fontawesome.min.css">
+
+        <script src="js/jquery-3.3.1.min.js"></script>
+
+        <title>AngularJS Example</title>  
+
+    </head>
+    <body ng-app="simpleApp">
+        <div class="container" ng-controller="simpleCtrl">
+
+            <!-- **************************************AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
+            <center> <h1>WELCOME TO <span class="badge badge-secondary ">ON TOPIC</span></h1><center>
+                    <div>
+                        <div class="jumbotron">
+                            <h1 class="display-4 text-danger" style="text-align: justify;">What is ON TOPIC ?</h1>
+                            <p class="lead"> On Topic is a blog site website where you can post your article comment on existing article and comment. If you are a register member
+                                you should able to view your timeline through log in. So enjoy our website and embrace your mind to gain more knowledge.</p>
+                            <hr class="my-4">
+                            <h1 class="display-4 text-danger" style="text-align: justify;">What can you do?</h1>
+                            <p class="lead">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <i class="fa fa-share-alt text-danger fa-5x m-1"></i> <p>SHARE</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <i class="fa fa-thumbs-up text-danger fa-5x m-1"></i> <p>LIKE</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <i class="fa fa-user-secret text-danger fa-5x m-1"></i> <p>PROTECT</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <i class="fa fa-anchor text-danger fa-5x m-1"></i> <p>STORE</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <i class="fa fa-mask text-danger fa-5x m-1"></i> <p>PLAY</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <i class="fa fa-lock text-danger fa-5x m-1"></i> <p>PRIVACY</p>
+                                </div>
+
+                            </div>
+
+                            <hr class="my-4">
+                            <h1 class="display-4 text-danger" style="text-align: justify;">JOIN US <a href="registration.html" class="text-light badge badge-secondary bg-danger">NOW</a></h1>
+                       <img src="img/footimg.jpg" alt="" style="height: 450px; width: 850px; margin: 10px;"/>
+                        </div>
+                    </div>
+                    <!-- **************************************-->
+                   
+                                            <script>
+                                                var app = angular.module("simpleApp", []);
+                                                app.controller("simpleCtrl", function ($scope, $http) {
+
+                                                    $scope.isVisible = false;
+
+                                                    $scope.science = [];
+                                    //                $scope.morning = [];
+                                    //                $scope.highlights = [];
+
+                                                    $scope.sciencecomments = [];
+                                    //                $scope.morningcomments = [];
+                                    //                $scope.highlightscomments = [];
+
+                                                    refreshSimpleDataScience();
+                                    //                refreshSimpleDataMorning();
+                                    //                refreshSimpleDataHighlights();
+
+                                                    refreshSimpleDataCommentScience();
+                                    //                refreshSimpleDataCommentMorning();
+                                    //                refreshSimpleDataCommentHighlights();
+
+                                                    //Json Post Data Science ***********************************
+                                                    function refreshSimpleDataScience() {
+                                                        $http({
+                                                            method: 'GET',
+                                                            url: 'http://localhost:8080/ONTOPIC/service/science'
+                                                        }).then(function (response) {
+                                                            $scope.science = response.data;
+                                                            console.log($scope.simples);
+                                                        });
+                                                    }
+                                                    ;
+                                                    //Json Comment Data 
+                                                    function refreshSimpleDataCommentScience() {
+                                                        $http({
+                                                            method: 'GET',
+                                                            url: 'http://localhost:8080/ONTOPIC/service/sciencecomment'
+                                                        }).then(function (response) {
+                                                            $scope.sciencecomments = response.data;
+                                                            console.log($scope.comments);
+                                                        });
+                                                    }
+                                                    ;
+
+                                    //                //Json Post Data Morning **********************************
+
+
+                                                    //insert science
+                                                    $scope.scienceForm = {
+                                                        pid: -1,
+                                                        title: "",
+                                                        post: "",
+                                                        date: ""
+                                                    };
+                                                    ///
+                                                    //insert science
+                                                    $scope.morningForm = {
+                                                        pid: -1,
+                                                        title: "",
+                                                        post: "",
+                                                        date: ""
+                                                    };
+
+                                                    /////
+                                    //insert science
+                                                    $scope.highlightsForm = {
+                                                        pid: -1,
+                                                        title: "",
+                                                        post: "",
+                                                        date: ""
+                                                    };
+                                                    $scope.submitSimpleScience = function () {
+
+                                                        var method = "";
+                                                        var url = "";
+                                                        if ($scope.scienceForm.pid == -1) {
+                                                            method = "POST";
+                                                            url = 'service/science';
+                                                        }
+                                                        // edit er jonne
+                                                        else {
+
+                                                            method = "PUT";
+                                                            url = 'service/science/update/' + $scope.scienceForm.pid;
+                                                        }
+
+                                                        $http({
+                                                            method: method,
+                                                            url: url,
+                                                            data: angular.toJson($scope.scienceForm),
+                                                            headers: {
+                                                                'Content-Type': 'application/json'
+                                                            }
+                                                        }).then(success, error);
+                                                    };
+
+
+                                    //                /////////////////////////////// insert update morning
+
+                                                    // success and error method
+                                                    function success(response) {
+                                                        //refreshSimpleData();
+                                                        //clearFormData();
+                                                        refreshSimpleDataScience();
+                                                        refreshSimpleDataCommentScience();
+                                                    }
+
+                                                    function clearFormData() {
+                                                        $scope.simpleForm.id = -1,
+                                                                $scope.simpleForm.name = "",
+                                                                $scope.simpleForm.email = ""
+                                                    }
+                                                    ;
+                                                    function error(response) {
+                                                        console.log(response.statusText);
+                                                    }
+
+
+                                                    //delete Id science
+                                                    $scope.deleteSimple = function (simple) {
+                                                        $http({
+                                                            method: 'DELETE',
+                                                            url: 'service/science/delete/' + simple.pid
+                                                        }).then(success, error);
+                                                        ;
+                                                    };
+
+                                                    // edit start
+
+                                                    $scope.editSimple = function (simple) {
+                                                        $scope.scienceForm.pid = simple.pid,
+                                                                $scope.scienceForm.title = simple.title,
+                                                                $scope.scienceForm.post = simple.post,
+                                                                $scope.scienceForm.date = simple.date
+                                                    };
+
+                                                    ///////////////////////////////////////////////////////////////////////
+
+                                                    //delete Id science comment
+                                                    $scope.deleteCommentScience = function (simple) {
+                                                        $http({
+                                                            method: 'DELETE',
+                                                            url: 'service/sciencecomment/delete/' + simple.id
+                                                        }).then(success, error);
+                                                        ;
+                                                    };
+
+
+
+                                                });
+
+
+
+
+                                            </script>
+
+
+                                            </body>
+                                            </html>

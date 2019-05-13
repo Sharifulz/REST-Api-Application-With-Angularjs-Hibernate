@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+    <head>  
+          <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/style.css">
+        <link href="css/all.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/fontawesome.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="css/bootstrap.css">
+
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+
+
+        <script src="resources/bootstrap.min.js" type="text/javascript"></script>
+        <script src="resources/angular.min.js" type="text/javascript"></script>
+
+
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/fontawesome.min.css">
+
+        <script src="js/jquery-3.3.1.min.js"></script>
+
+        <title>AngularJS Example</title>  
+
+    </head>
+    <body ng-app="simpleApp">
+        <div class="wrap">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-danger mb-5 fixed-top" style="height: 100px;" role="navigation">
+                        <p class="lead text-light" style="font-size: 30px;">ON TOPIC (BLOG)</p>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <div class="row">
+
+                                <a href="home.html" class="btn btn-warning px-5" style="margin-left: 850px;">HOME PAGE</a>
+
+                            </div>
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" ng-controller="simpleCtrl">
+            <div class="row" style="margin-top: 200px;">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                     <div class="alert alert-success text-dark" role="alert">
+                                            {{failedMsg}}
+                                        </div>
+                    <div class="">
+                        <select ng-model="dept" class="form-control">
+                            <option value="" class="dropdown-item text-dark">SELECT DEPARTMENT</option>
+                            <option value="MORNING" class="dropdown-item text-dark">MORNING</option>
+                            <option value="HIGHLIGHTS" class="dropdown-item text-dark">HIGHLIGHTS</option>
+                            <option value="SCIENCE" class="dropdown-item text-dark">SCIENCE</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <!-- **************************************AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
+
+
+
+
+            <div ng-if="dept == 'MORNING'">
+                <!-- **************************************BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB-->
+                <div class="row">
+                    <div class="col-md-2">
+                         <i class="fa fa-blog fa-4x text-danger m-5"></i>
+                    </div>
+                    <div class="col-md-8">
+                          <center> <h1>YOU HAVE CHOSEN <span class="badge badge-secondary">MORNING</span></h1><center>
+                <!-- **************************************-->
+                <form class="form-horizontal" ng-submit="submitSimpleMorning()" id="formForRditUpdate2">
+                    <input type="text" class="form-control" ng-model="morningForm.title" placeholder="POST TITLE" /><br>
+                    <input type="text" class="form-control" ng-model="morningForm.post" placeholder="POST DESCRIPTION" /><br>
+                    <input type="text" class="form-control" ng-model="morningForm.date"  placeholder="POST DATE"/>
+                    <br>
+                   <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" />
+                </form>
+                <hr/>
+                <hr/>
+                <hr/>
+                    </div>
+                    <div class="col-md-2">
+                         <i class="fa fa-blog fa-4x text-danger m-5"></i>
+                    </div>
+                </div>
+              
+            </div>  
+
+            <div ng-if="dept == 'HIGHLIGHTS'">
+                <!-- **************************************CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC-->
+                  <div class="row">
+                      <div class="col-md-2">
+                           <i class="fa fa-tv fa-4x text-danger m-5"></i>
+                      </div>
+                    <div class="col-md-8">
+                         <center> <h1>YOU HAVE CHOSEN <span class="badge badge-secondary">HIGHLIGHTS</span></h1><center>
+                <!-- **************************************-->
+                <form class="form-horizontal" ng-submit="submitSimpleHighlights()" id="formForRditUpdate3">
+                    <input type="text" class="form-control" ng-model="highlightsForm.title" placeholder="POST TITLE" /><br>
+                    <input type="text" class="form-control" ng-model="highlightsForm.post"  placeholder="POST DESCRIPTION"/><br>
+                    <input type="text" class="form-control" ng-model="highlightsForm.date" placeholder="POST DATE" />
+                    <br>
+                    <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" />
+                </form>
+                <hr>
+                    </div>
+                      <div class="col-md-2">
+                           <i class="fa fa-tv fa-4x text-danger m-5"></i>
+                      </div>
+                </div>
+                
+
+            </div>  
+
+            <div ng-if="dept == 'SCIENCE'">
+                  <div class="row">
+                      <div class="col-md-2">
+                           <i class="fa fa-atom fa-4x text-danger m-5"></i>
+                      </div>
+                    <div class="col-md-8">
+                         <center> <h1>YOU HAVE CHOSEN <span class="badge badge-secondary">SCIENCE</span></h1><center>
+                <!-- **************************************-->
+                <form class="form-horizontal" ng-submit="submitSimpleScience()" id="formForRditUpdate">
+                    <input type="text" class="form-control" ng-model="scienceForm.title" placeholder="POST TITLE" /><br>
+                    <input type="text" class="form-control" ng-model="scienceForm.post" placeholder="POST DESCRIPTION" /><br>
+                    <input type="text" class="form-control" ng-model="scienceForm.date" placeholder="POST DATE" />
+                    <br>
+                    <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" />
+                </form>
+                <hr/>
+                <hr/>
+                    </div>
+                      <div class="col-md-2">
+                           <i class="fa fa-atom fa-4x text-danger m-5"></i>
+                      </div>
+                </div>
+               
+            </div>  
+
+
+
+
+
+
+
+        </div>
+
+
+        <script>
+            var app = angular.module("simpleApp", []);
+            app.controller("simpleCtrl", function ($scope, $http) {
+
+            $scope.failedMsg="SELECT CATEGORY TO POST";
+            
+                $scope.isVisible = false;
+
+                $scope.science = [];
+                $scope.morning = [];
+                $scope.highlights = [];
+
+                $scope.sciencecomments = [];
+                $scope.morningcomments = [];
+                $scope.highlightscomments = [];
+
+                refreshSimpleDataScience();
+                refreshSimpleDataMorning();
+                refreshSimpleDataHighlights();
+
+                refreshSimpleDataCommentScience();
+                refreshSimpleDataCommentMorning();
+                refreshSimpleDataCommentHighlights();
+
+                //Json Post Data Science ***********************************
+                function refreshSimpleDataScience() {
+                    $http({
+                        method: 'GET',
+                        url: 'http://localhost:8080/ONTOPIC/service/science'
+                    }).then(function (response) {
+                        $scope.science = response.data;
+                        console.log($scope.simples);
+                    });
+                }
+                ;
+                //Json Comment Data 
+                function refreshSimpleDataCommentScience() {
+                    $http({
+                        method: 'GET',
+                        url: 'http://localhost:8080/ONTOPIC/service/sciencecomment'
+                    }).then(function (response) {
+                        $scope.sciencecomments = response.data;
+                        console.log($scope.comments);
+                    });
+                }
+                ;
+
+                //Json Post Data Morning **********************************
+                function refreshSimpleDataMorning() {
+                    $http({
+                        method: 'GET',
+                        url: 'http://localhost:8080/ONTOPIC/service/morning'
+                    }).then(function (response) {
+                        $scope.morning = response.data;
+                        console.log($scope.simples);
+                    });
+                }
+                ;
+                //Json Comment Data
+                function refreshSimpleDataCommentMorning() {
+                    $http({
+                        method: 'GET',
+                        url: 'http://localhost:8080/ONTOPIC/service/morningcomment'
+                    }).then(function (response) {
+                        $scope.morningcomments = response.data;
+                        console.log($scope.comments);
+                    });
+                }
+                ;
+                //Json Post Data Highlights *************************************
+                function refreshSimpleDataHighlights() {
+                    $http({
+                        method: 'GET',
+                        url: 'http://localhost:8080/ONTOPIC/service/highlights'
+                    }).then(function (response) {
+                        $scope.highlights = response.data;
+                        console.log($scope.simples);
+                    });
+                }
+                ;
+                //Json Comment Data
+                function refreshSimpleDataCommentHighlights() {
+                    $http({
+                        method: 'GET',
+                        url: 'http://localhost:8080/ONTOPIC/service/highlightscomment'
+                    }).then(function (response) {
+                        $scope.highlightscomments = response.data;
+                        console.log($scope.comments);
+                    });
+                }
+                ;
+
+
+                //insert science
+                $scope.scienceForm = {
+                    pid: -1,
+                    title: "",
+                    post: "",
+                    date: ""
+                };
+                ///
+                //insert science
+                $scope.morningForm = {
+                    pid: -1,
+                    title: "",
+                    post: "",
+                    date: ""
+                };
+
+                /////
+//insert science
+                $scope.highlightsForm = {
+                    pid: -1,
+                    title: "",
+                    post: "",
+                    date: ""
+                };
+                $scope.submitSimpleScience = function () {
+
+                    var method = "";
+                    var url = "";
+                    if ($scope.scienceForm.pid == -1) {
+                        method = "POST";
+                        url = 'service/science';
+                        $scope.failedMsg="You Just Published A Post. Go Your Tomeline To View";
+                    }
+                    // edit er jonne
+                    else {
+
+                        method = "PUT";
+                        url = 'service/science/update/' + $scope.scienceForm.pid;
+                    }
+
+                    $http({
+                        method: method,
+                        url: url,
+                        data: angular.toJson($scope.scienceForm),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(success, error);
+                };
+
+
+                /////////////////////////////// insert update morning
+                $scope.submitSimpleMorning = function () {
+
+                    var method = "";
+                    var url = "";
+                    if ($scope.morningForm.pid == -1) {
+                        method = "POST";
+                        url = 'service/morning';
+                        $scope.failedMsg="You Just Published A Post. Go Your Tomeline To View";
+                    }
+                    // edit er jonne
+                    else {
+
+                        method = "PUT";
+                        url = 'service/morning/update/' + $scope.morningForm.pid;
+                    }
+
+                    $http({
+                        method: method,
+                        url: url,
+                        data: angular.toJson($scope.morningForm),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(success, error);
+                };
+
+                /////////////////////////////// insert update highlights
+                $scope.submitSimpleHighlights = function () {
+
+                    var method = "";
+                    var url = "";
+                    if ($scope.highlightsForm.pid == -1) {
+                        method = "POST";
+                        url = 'service/highlights';
+                        $scope.failedMsg="You Just Published A Post. Go Your Tomeline To View";
+                    }
+                    // edit er jonne
+                    else {
+
+                        method = "PUT";
+                        url = 'service/highlights/update/' + $scope.highlightsForm.pid;
+                    }
+
+                    $http({
+                        method: method,
+                        url: url,
+                        data: angular.toJson($scope.highlightsForm),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(success, error);
+                };
+                // success and error method
+                function success(response) {
+                    refreshSimpleData();
+                     
+                    //clearFormData()
+                }
+
+                function clearFormData() {
+                    $scope.simpleForm.id = -1,
+                            $scope.simpleForm.name = "",
+                            $scope.simpleForm.email = ""
+                }
+                ;
+                function error(response) {
+                    console.log(response.statusText);
+                }
+
+
+                //delete Id science
+                $scope.deleteSimple = function (simple) {
+                    $http({
+                        method: 'DELETE',
+                        url: 'service/science/delete/' + simple.pid
+                    }).then(success, error);
+                    ;
+                };
+                //delete Id morning
+                $scope.deleteSimpleMorning = function (simple) {
+                    $http({
+                        method: 'DELETE',
+                        url: 'service/morning/delete/' + simple.pid
+                    }).then(success, error);
+                    ;
+                };
+                //delete Id highlights
+                $scope.deleteSimpleHighlights = function (simple) {
+                    $http({
+                        method: 'DELETE',
+                        url: 'service/highlights/delete/' + simple.pid
+                    }).then(success, error);
+                    ;
+                };
+                /////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////
+                // edit start
+
+                $scope.editSimple = function (simple) {
+                    $scope.scienceForm.pid = simple.pid,
+                            $scope.scienceForm.title = simple.title,
+                            $scope.scienceForm.post = simple.post,
+                            $scope.scienceForm.date = simple.date
+                };
+                $scope.editSimpleMorning = function (simple) {
+                    $scope.morningForm.pid = simple.pid,
+                            $scope.morningForm.title = simple.title,
+                            $scope.morningForm.post = simple.post,
+                            $scope.morningForm.date = simple.date
+                };
+
+                $scope.editSimpleHighlights = function (simple) {
+                    $scope.highlightsForm.pid = simple.pid,
+                            $scope.highlightsForm.title = simple.title,
+                            $scope.highlightsForm.post = simple.post,
+                            $scope.highlightsForm.date = simple.date
+                };
+                ///////////////////////////////////////////////////////////////////////
+                ///////////////////////////////////////////////////////////////////////
+                ///////////////////////////////////////////////////////////////////////
+                ///////////////////////////////////////////////////////////////////////
+                ///////////////////////////////////////////////////////////////////////
+
+                //delete Id science comment
+                $scope.deleteCommentScience = function (simple) {
+                    $http({
+                        method: 'DELETE',
+                        url: 'service/sciencecomment/delete/' + simple.id
+                    }).then(success, error);
+                    ;
+                };
+
+                //delete Id science comment
+                $scope.deleteCommentMorning = function (simple) {
+                    $http({
+                        method: 'DELETE',
+                        url: 'service/morningcomment/delete/' + simple.id
+                    }).then(success, error);
+                    ;
+                };
+
+                //delete Id science comment
+                $scope.deleteCommentHighlights = function (simple) {
+                    $http({
+                        method: 'DELETE',
+                        url: 'service/highlightscomment/delete/' + simple.id
+                    }).then(success, error);
+                    ;
+                };
+
+            });
+
+
+
+
+        </script>
+
+
+    </body>
+</html>

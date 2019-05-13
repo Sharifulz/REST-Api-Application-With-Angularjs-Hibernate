@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+    <head>  
+      <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/style.css">
+        <link href="css/all.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/fontawesome.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="css/bootstrap.css">
+
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+
+
+        <script src="resources/bootstrap.min.js" type="text/javascript"></script>
+        <script src="resources/angular.min.js" type="text/javascript"></script>
+
+
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/fontawesome.min.css">
+
+        <script src="js/jquery-3.3.1.min.js"></script>
+
+        <title>AngularJS Example</title>  
+
+    </head>
+    <body ng-app="simpleApp">
+        <div class="container" ng-controller="simpleCtrl">
+
+            <!-- **************************************AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
+
+
+            <center> <h1>DEPARTMENT <span class="badge badge-secondary">HIGHLIGHTS</span></h1><center>
+                    <div ng-repeat="high in highlights">
+                        <div class="jumbotron">
+                            <h1 class="display-4">POST {{high.pid}} : {{high.title}}</h1>
+                            <p class="lead">{{high.post}}</p>
+                            <hr class="my-4">
+                            <a ng-click="editSimpleHighlights(high)" class="btn btn-primary" href="#formForRditUpdate3"><i class="fa fa-edit fa-1x text-light m-1"></i>Edit</a>
+                            <a ng-click="deleteSimpleHighlights(high)" class="btn btn-danger text-light"><i class="fa fa-times-circle fa-1x text-light m-1"></i>Delete</a>
+                        </div>
+                    </div>
+
+                    <center> <h1><span class="badge badge-secondary">ADD</span>OR <span class="badge badge-secondary">EDIT</span> POST</h1><center>
+                            <form class="form-horizontal mt-5" ng-submit="submitSimpleHighlights()" id="formForRditUpdate3">
+                                <input class="form-control" ng-model="highlightsForm.title"  placeholder="POST TITLE"/><br>
+                                <input class="form-control" ng-model="highlightsForm.post"  placeholder="POST DETAILS"/><br/>
+                                <input class="form-control" ng-model="highlightsForm.date"  placeholder="POST DATE"/>
+                                <br>
+                                <input type="submit" value="ADD / EDIT" class="btn btn-primary btn-lg px-5" style="margin-left:500px;"/>
+                            </form>
+                            <hr>
+                            <div class="row mt-5">
+
+                                <div class="col-md-12">
+                                    <center> <h1>HIGHLIGHTS <span class="badge badge-secondary">COMMENTS</span></h1><center>
+                                            <div ng-repeat="hcom in highlightscomments">
+                                                <div class="alert alert-primary" role="alert">
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                           <i class="fa fa-comments fa-2x text-danger m-2"></i> {{hcom.comment}}
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <a style="margin-left: 30px" ng-click="deleteCommentHighlights(hcom)" class="btn btn-danger text-light">
+                                                                <i class="fa fa-times-circle fa-1x text-light m-2"></i>Delete</a>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+
+                                            </div>
+                                            </div>
+
+                                            </div>
+                                            <script>
+                                                var app = angular.module("simpleApp", []);
+                                                app.controller("simpleCtrl", function ($scope, $http) {
+
+                                                    $scope.isVisible = false;
+
+                                    //                $scope.science = [];
+                                    //                $scope.morning = [];
+                                                    $scope.highlights = [];
+
+                                    //                $scope.sciencecomments = [];
+                                    //                $scope.morningcomments = [];
+                                                    $scope.highlightscomments = [];
+
+                                    //                refreshSimpleDataScience();
+                                    //                refreshSimpleDataMorning();
+                                                    refreshSimpleDataHighlights();
+
+                                    //                refreshSimpleDataCommentScience();
+                                    //                refreshSimpleDataCommentMorning();
+                                                    refreshSimpleDataCommentHighlights();
+
+                                                    //Json Post Data Science ***********************************
+
+                                    //                //Json Post Data Highlights *************************************
+                                                    function refreshSimpleDataHighlights() {
+                                                        $http({
+                                                            method: 'GET',
+                                                            url: 'http://localhost:8080/ONTOPIC/service/highlights'
+                                                        }).then(function (response) {
+                                                            $scope.highlights = response.data;
+                                                            console.log($scope.simples);
+                                                        });
+                                                    }
+                                                    ;
+                                                    //Json Comment Data
+                                                    function refreshSimpleDataCommentHighlights() {
+                                                        $http({
+                                                            method: 'GET',
+                                                            url: 'http://localhost:8080/ONTOPIC/service/highlightscomment'
+                                                        }).then(function (response) {
+                                                            $scope.highlightscomments = response.data;
+                                                            console.log($scope.comments);
+                                                        });
+                                                    }
+                                                    ;
+
+
+                                                    //insert science
+                                                    $scope.scienceForm = {
+                                                        pid: -1,
+                                                        title: "",
+                                                        post: "",
+                                                        date: ""
+                                                    };
+                                                    ///
+                                                    //insert science
+                                                    $scope.morningForm = {
+                                                        pid: -1,
+                                                        title: "",
+                                                        post: "",
+                                                        date: ""
+                                                    };
+
+                                                    /////
+                                    //insert science
+                                                    $scope.highlightsForm = {
+                                                        pid: -1,
+                                                        title: "",
+                                                        post: "",
+                                                        date: ""
+                                                    };
+                                    //                $scope.submitSimpleScience = function () {
+
+                                    //
+                                    //                /////////////////////////////// insert update highlights
+                                                    $scope.submitSimpleHighlights = function () {
+
+                                                        var method = "";
+                                                        var url = "";
+                                                        if ($scope.highlightsForm.pid == -1) {
+                                                            method = "POST";
+                                                            url = 'service/highlights';
+                                                        }
+                                                        // edit er jonne
+                                                        else {
+
+                                                            method = "PUT";
+                                                            url = 'service/highlights/update/' + $scope.highlightsForm.pid;
+                                                        }
+
+                                                        $http({
+                                                            method: method,
+                                                            url: url,
+                                                            data: angular.toJson($scope.highlightsForm),
+                                                            headers: {
+                                                                'Content-Type': 'application/json'
+                                                            }
+                                                        }).then(success, error);
+                                                    };
+                                                    // success and error method
+                                                    function success(response) {
+                                                        // refreshSimpleData();
+                                                        //clearFormData();
+                                                        refreshSimpleDataCommentHighlights();
+                                                        refreshSimpleDataHighlights();
+                                                        highlightscomments();
+                                                    }
+
+                                                    function clearFormData() {
+                                                        $scope.simpleForm.id = -1,
+                                                                $scope.simpleForm.name = "",
+                                                                $scope.simpleForm.email = ""
+                                                    }
+                                                    ;
+                                                    function error(response) {
+                                                        console.log(response.statusText);
+                                                    }
+
+
+                                                    //delete Id science
+
+                                    //                //delete Id highlights
+                                                    $scope.deleteSimpleHighlights = function (simple) {
+                                                        $http({
+                                                            method: 'DELETE',
+                                                            url: 'service/highlights/delete/' + simple.pid
+                                                        }).then(success, error);
+                                                        ;
+                                                    };
+
+                                    //
+                                                    $scope.editSimpleHighlights = function (simple) {
+                                                        $scope.highlightsForm.pid = simple.pid,
+                                                                $scope.highlightsForm.title = simple.title,
+                                                                $scope.highlightsForm.post = simple.post,
+                                                                $scope.highlightsForm.date = simple.date
+                                                    };
+                                                    ///////////////////////////////////////////////////////////////////////
+
+                                    //                //delete Id highlights comment
+                                                    $scope.deleteCommentHighlights = function (simple) {
+                                                        $http({
+                                                            method: 'DELETE',
+                                                            url: 'service/highlightscomment/delete/' + simple.id
+                                                        }).then(success, error);
+                                                        ;
+                                                    };
+
+                                                });
+
+
+
+
+                                            </script>
+
+
+                                            </body>
+                                            </html>
